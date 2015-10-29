@@ -18,8 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    self.locationManagerInit = [[LocationManager alloc]init];
-    
+   self.locationManagerInit = [[LocationManager alloc]init];
+    self.locationManagerInit.managedObjectContext = [DataStore sharedDataStore].managedObjectContext;
     return YES;
 }
 

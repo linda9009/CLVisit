@@ -14,7 +14,7 @@
 - (instancetype)init {
     if (self = [super init]) {
     self.locationManager = [[CLLocationManager alloc] init];
-    
+        
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
     
@@ -50,12 +50,12 @@
 
 - (void)locationManager:(CLLocationManager *)manager didVisit:(CLVisit *)locationVisited {
     NSManagedObjectContext *objectContext = [DataStore sharedDataStore].managedObjectContext;
-    Visit *newVisit = [NSEntityDescription insertNewObjectForEntityForName:@"CLVisit" inManagedObjectContext:objectContext];
+    Visit *newVisit = [NSEntityDescription insertNewObjectForEntityForName:@"Visit" inManagedObjectContext:objectContext];
     newVisit.latitude = [NSNumber numberWithDouble:locationVisited.coordinate.latitude];
     newVisit.longitude = [NSNumber numberWithDouble:locationVisited.coordinate.longitude];
     newVisit.horizontalAccuracy = [NSNumber numberWithDouble:locationVisited.horizontalAccuracy];
-    newVisit.departureDate = locationVisited.departureDate;
     newVisit.arrivalDate = locationVisited.arrivalDate;
+    newVisit.departureDate = locationVisited.departureDate;
     [[DataStore sharedDataStore] saveContext];
     
     

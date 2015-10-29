@@ -11,12 +11,14 @@
 
 @interface TableViewController ()
 
+
 @end
 
 @implementation TableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.dataStore = [DataStore sharedDataStore];
     [[DataStore sharedDataStore]fetchData];
     NSArray *locationsToStore = self.dataStore.locations;
@@ -46,6 +48,7 @@
 }
 
 - (IBAction)refreshButtonTapped:(id)sender {
+    [[DataStore sharedDataStore]fetchData];
     [self.tableView reloadData];
 }
 #pragma mark - Table view data source
